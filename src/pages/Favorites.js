@@ -1,14 +1,22 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { EmployeeContext } from '../context/EmployeeContext';
 import EmployeeDetails from '../components/EmployeeDetails';
 
 const Favorites = () => {
   const { favorites, removeFromFavorites } = useContext(EmployeeContext);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4">Favorite Employees</h2>
+      <button
+        onClick={() => navigate('/')}
+        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        Back
+      </button>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {favorites.map((employee) => (
           <div key={employee.id} className="card p-4 bg-white border rounded shadow">
